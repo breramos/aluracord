@@ -68,6 +68,8 @@ export default function PaginaInicial() {
                 sm: 'row',
               },
               width: '100%', maxWidth: '700px',
+              border: '1px solid',
+              borderColor: appConfig.theme.colors.primary[500],
               borderRadius: '5px', padding: '32px', margin: '16px',
               boxShadow: '0 2px 10px 0 rgb(0 0 0 / 10%)',
               backgroundColor: appConfig.theme.colors.neutrals[300],  //#9AA5B1 referente ao 300
@@ -106,7 +108,8 @@ export default function PaginaInicial() {
                 fullWidth
                 textFieldColors={{
                   neutral: {
-                    textColor: appConfig.theme.colors.neutrals[200],
+                    //textColor: appConfig.theme.colors.neutrals[400],
+                    textColor: appConfig.theme.colors.neutrals[600],
                     mainColor: appConfig.theme.colors.neutrals[700],
                     mainColorHighlight: appConfig.theme.colors.primary[500],
                     backgroundColor: appConfig.theme.colors.neutrals[500],
@@ -118,7 +121,7 @@ export default function PaginaInicial() {
                 label='Entrar'
                 fullWidth
                 buttonColors={{
-                  contrastColor: appConfig.theme.colors.neutrals["000"],
+                  contrastColor: appConfig.theme.colors.neutrals[700],
                   mainColor: appConfig.theme.colors.primary[500],
                   mainColorLight: appConfig.theme.colors.primary[600],
                   mainColorStrong: appConfig.theme.colors.primary[700],
@@ -146,6 +149,8 @@ export default function PaginaInicial() {
             >
               <Image
                 styleSheet={{
+                  border: '1px solid', 
+                  borderColor: appConfig.theme.colors.primary[500],
                   borderRadius: '50%',
                   marginBottom: '16px',
                 }}
@@ -154,9 +159,11 @@ export default function PaginaInicial() {
               <Text
                 variant="body4"
                 styleSheet={{
-                  color: appConfig.theme.colors.neutrals[200],
+                  color: appConfig.theme.colors.primary[500],
                   backgroundColor: appConfig.theme.colors.neutrals[900],
-                  padding: '3px 10px',
+                  fontSize: '13px',
+                  fontWeight: 'bold',
+                  padding: '4px 10px',
                   borderRadius: '1000px'
                 }}
               >
