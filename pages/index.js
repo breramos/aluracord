@@ -39,14 +39,14 @@ export default function PaginaInicial() {
     //const username = 'breramos';
     const [username, setUsername] = React.useState('breramos'); //a palavra use é um padrão do react para interceptar coisas, é um gancho tipo um cookie
     const roteamento = useRouter();
-    const dados = fetch('https://api.github.com/users/breramos');
-    fetch('https://api.github.com/users/breramos')
-    .then(function(respostaDoServidor) {
-        return respostaDoServidor.json ()
-    })
-    .then (function(respostaConvertida) {
+    //const dados = fetch('https://api.github.com/users/breramos');
+    //fetch('https://api.github.com/users/breramos')
+    //.then(function(respostaDoServidor) {
+        //return respostaDoServidor.json ()
+    //})
+    //.then (function(respostaConvertida) {
 
-    })
+    //})
 
     return (
       <>
