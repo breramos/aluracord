@@ -28,7 +28,7 @@ export default function ChatPage() {
     function handleNovaMensagem(novaMensagem) {
         const mensagem = {
             //id: listaDeMensagens.length + 1,
-            de: 'vanessametonini',
+            de: 'breramos',
             texto: novaMensagem,
 
         };
@@ -129,11 +129,33 @@ export default function ChatPage() {
                                 color: appConfig.theme.colors.neutrals[200],
                             }}
                         />
+
+                        <Button
+                            type='submit'
+                            label='Enviar'
+                            value={mensagem}
+                            onClick={(event)=>{
+                                console.log('envia')
+                                event.preventDefault();
+                                handleNovaMensagem(mensagem);
+
+                            }}
+                            buttonColors={{
+                                contrastColor: appConfig.theme.colors.neutrals[700],
+                                mainColor: appConfig.theme.colors.primary[500],
+                                mainColorLight: appConfig.theme.colors.primary[500],
+                                mainColorStrong: appConfig.theme.colors.primary[700],
+                            }}
+                            styleSheet={{
+                                bottom:'4px',
+                                padding: '10px 15px',
+                            }}
+                        />
                     </Box>
                 </Box>
             </Box>
         </Box>
-    )
+    );
 }
 
 function Header() {
@@ -154,7 +176,7 @@ function Header() {
     )
 }
 
-function MessageList(props) {  //(props)
+function MessageList(props) {  
     console.log(props.listaDeMensagens);
     return (
         <Box
