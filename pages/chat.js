@@ -1,24 +1,51 @@
 import { Box, Text, TextField, Image, Button } from '@skynexui/components';
 import React from 'react';
 import appConfig from '../config.json';
+import { createClient } from '@supabase/supabase-js';
+
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MzYzNzcyMSwiZXhwIjoxOTU5MjEzNzIxfQ._Rc9YvbSzas6RPH_yTRTxfGWzcvPo1yDR47LMsp3IgE';
+const SUPABASE_URL = 'https://myjvrmpnojcekqxnozse.supabase.co';
+const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
 
 export default function ChatPage() {
     const [mensagem, setMensagem] = React.useState('');
-    const [listaDeMensagens, setlistaDeMensagens] = React.useState ([]);
+    const [listaDeMensagens, setListaDeMensagens] = React.useState ([]);
     // Sua lógica vai aqui
+
+    React.useEffect(() => {
+        supabaseClient
+            .from('mensagens')
+            .select('*')
+            .order('id', { ascending: false })
+            .then(({ data }) => {
+                console.log('Dados da consulta', data);
+                setListaDeMensagens(data);
+            });
+    }, []);
+
 
     function handleNovaMensagem(novaMensagem) {
         const mensagem = {
-            id: listaDeMensagens.length + 1,
+            //id: listaDeMensagens.length + 1,
             de: 'vanessametonini',
             texto: novaMensagem,
 
         };
         
-        setlistaDeMensagens([
-            mensagem,    
-            ...listaDeMensagens,
-        ]);
+        supabaseClient
+            .from('mensagens')
+            .insert([
+                mensagem
+            ])
+            .then(({ data }) => {
+                console.log('Criando mensagem: ', data);
+                setListaDeMensagens([
+                    data[0],    
+                    ...listaDeMensagens,
+                ]);
+            });
+
         setMensagem('');
     }
     // ./Sua lógica vai aqui
@@ -133,7 +160,7 @@ function MessageList(props) {  //(props)
         <Box
             tag="ul"
             styleSheet={{
-                overflow: 'unset',
+                overflow: 'scroll',
                 display: 'flex',
                 flexDirection: 'column-reverse',
                 flex: 1,
@@ -168,7 +195,7 @@ function MessageList(props) {  //(props)
                                     display: 'inline-block',
                                     marginRight: '8px',
                                 }}
-                                src={`https://github.com/vanessametonini.png`}
+                                src={`https://github.com/${mensagem.de}.png`}
                             />
                             <Text tag="strong">
                                 {mensagem.de}    
